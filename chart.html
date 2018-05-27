@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <title>Chart.js</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.min.js"></script>
+</head>
+
+<body>
+    <div class="container" style="width:100%">
+        <canvas id="canvas"></canvas>
+    </div>
+    <script>
+        var ctx = document.getElementById("canvas").getContext("2d");
+        var canvas = new Chart(ctx, {
+            type: 'bar',
+            data: {{barChartData}},
+            options: {{complexChartOption}},
+        });
+    </script>
+</body>
+
+</html>
