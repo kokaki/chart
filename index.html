@@ -1,29 +1,29 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang='ja'>
 
 <head>
-    <meta charset="utf-8">
-    <title>Chart.js</title>
+    <meta charset='utf-8'>
+    <title>Chart.js[Apache]</title>
 </head>
 
 <body>
-    <div class="container" style="width:100%">
-        <canvas id="canvas"></canvas>
+    <div class='container' style='width:100%'>
+        <canvas id='canvas'></canvas>
     </div>
 </body>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.min.js"></script>
+<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.min.js'></script>
 <script>
     // CSV形式のファイルから配列(Array)に変換する関数
     function csv2Array(fileName) {
         var dataArray = new Array();
         var data = new XMLHttpRequest();
-        data.open("GET", fileName, false);
+        data.open('GET', fileName, false);
         data.send(null);
         var LF = String.fromCharCode(10);
         var lines = data.responseText.split(LF);
         for (var i = 0; i < lines.length; ++i) {
-            var cells = lines[i].split(",");
+            var cells = lines[i].split(',');
             if (cells.length != 1) {
                 dataArray.push(cells);
             }
@@ -42,33 +42,32 @@
     function getBarChartData(data) {
         var barChartData = {
             labels: data[0],
-            datasets: [
-                {
+            datasets: [{
                     type: 'line',
                     label: '気温',
                     data: data[1],
-                    borderColor: "rgba(254,97,132,0.8)",
-                    //backgroundColor: "rgba(254,97,132,0.5)",
-                    pointBackgroundColor: "rgba(254,97,132,0.8)",
-                    yAxisID: "y-axis-1",
+                    borderColor: 'rgba(254,97,132,0.8)',
+                    backgroundColor: 'rgba(230, 188, 196,0.5)',
+                    pointBackgroundColor: 'rgba(254,97,132,0.8)',
+                    yAxisID: 'y-axis-1',
                 },
                 {
                     type: 'line',
                     label: '湿度',
                     data: data[2],
-                    borderColor: "rgba(54,164,235,0.8)",
-                    //backgroundColor: "rgba(54,164,235,0.5)",
-                    pointBackgroundColor: "rgba(54,164,235,0.8)",
-                    yAxisID: "y-axis-2",
+                    borderColor: 'rgba(46, 173, 63,0.8)',
+                    backgroundColor: 'rgba(199, 240, 204,0.5)',
+                    pointBackgroundColor: 'rgba(46, 173, 63,0.8)',
+                    yAxisID: 'y-axis-2',
                 },
                 {
                     type: 'line',
                     label: '気圧',
                     data: data[3],
-                    borderColor: "rgba(54,164,235,0.8)",
-                    //backgroundColor: "rgba(54,164,235,0.5)",
-                    pointBackgroundColor: "rgba(54,164,235,0.8)",
-                    yAxisID: "y-axis-3",
+                    borderColor: 'rgba(54,164,235,0.8)',
+                    backgroundColor: 'rgba(183, 217, 235,0.5)',
+                    pointBackgroundColor: 'rgba(54,164,235,0.8)',
+                    yAxisID: 'y-axis-3',
                 },
             ],
         };
@@ -79,21 +78,20 @@
         var complexChartOption = {
             responsive: true,
             scales: {
-                yAxes: [
-                    {
-                        id: "y-axis-1",   // Y軸のID
-                        type: "linear",   // linear固定 
-                        position: "left", // どちら側に表示される軸か？
-                        ticks: {          // スケール
+                yAxes: [{
+                        id: 'y-axis-1', // Y軸のID
+                        type: 'linear', // linear固定 
+                        position: 'left', // どちら側に表示される軸か？
+                        ticks: { // スケール
                             max: 40.0,
                             min: 20.0,
                             stepSize: 5.0
                         },
                     },
                     {
-                        id: "y-axis-2",
-                        type: "linear",
-                        position: "right",
+                        id: 'y-axis-2',
+                        type: 'linear',
+                        position: 'right',
                         ticks: {
                             max: 100.0,
                             min: 20.0,
@@ -104,9 +102,9 @@
                         },
                     },
                     {
-                        id: "y-axis-3",
-                        type: "linear",
-                        position: "right",
+                        id: 'y-axis-3',
+                        type: 'linear',
+                        position: 'right',
                         ticks: {
                             max: 1020.0,
                             min: 950.0,
@@ -124,11 +122,11 @@
     // onloadイベント
     window.onload = function () {
         // CSVから配列(Array)を生成
-        var data = csv2Array("denpa-gardening/sensor_data/sensor_data.csv");
+        var data = csv2Array('denpa-gardening/sensor_data/sensor_data.csv');
         // 行列を入れ替え
         var data2 = transposeArray(data);
         // Chart表示
-        ctx = document.getElementById("canvas").getContext("2d");
+        ctx = document.getElementById('canvas').getContext('2d');
         window.myBar = new Chart(ctx, {
             type: 'bar',
             data: getBarChartData(data2),

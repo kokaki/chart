@@ -16,10 +16,12 @@ function handler(req, res) {
   var complexChartOption = getComplexChartOption(data2);
 
   fs.readFile('chart.html', 'utf-8', function (err, data) {
-    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.writeHead(200, {
+      'Content-Type': 'text/html'
+    });
 
-    var result = data.replace('{{barChartData}}', JSON.stringify(barChartData));
-    result = result.replace('{{complexChartOption}}', JSON.stringify(complexChartOption));
+    var result = data.replace('__barChartData__', JSON.stringify(barChartData));
+    result = result.replace('__complexChartOption__', JSON.stringify(complexChartOption));
 
     res.write(result);
     return res.end();
@@ -60,8 +62,7 @@ function transposeArray(array) {
 function getBarChartData(data) {
   var barChartData = {
     labels: data[0],
-    datasets: [
-      {
+    datasets: [{
         type: 'line',
         label: '気温',
         data: data[1],
@@ -100,12 +101,11 @@ function getComplexChartOption(data) {
   var complexChartOption = {
     responsive: true,
     scales: {
-      yAxes: [
-        {
-          id: 'y-axis-1',   // Y軸のID
-          type: 'linear',   // linear固定 
+      yAxes: [{
+          id: 'y-axis-1', // Y軸のID
+          type: 'linear', // linear固定 
           position: 'left', // どちら側に表示される軸か？
-          ticks: {          // スケール
+          ticks: { // スケール
             max: 40.0,
             min: 20.0,
             stepSize: 5.0
