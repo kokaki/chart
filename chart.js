@@ -72,7 +72,7 @@ exports.getComplexChartOption = function (data) {
         scales: {
             yAxes: [{
                     id: 'y-axis-1', // Y軸のID
-                    type: 'linear', // linear固定 
+                    type: 'linear', // linear固定
                     position: 'left', // どちら側に表示される軸か？
                     ticks: { // スケール
                         max: 40.0,
@@ -85,8 +85,8 @@ exports.getComplexChartOption = function (data) {
                     type: 'linear',
                     position: 'right',
                     ticks: {
-                        max: 100.0,
-                        min: 20.0,
+                        max: 80.0,
+                        min: 40.0,
                         stepSize: 10.0
                     },
                     gridLines: {
@@ -98,8 +98,8 @@ exports.getComplexChartOption = function (data) {
                     type: 'linear',
                     position: 'right',
                     ticks: {
-                        max: 1040.0,
-                        min: 950.0,
+                        max: 1015.0,
+                        min: 1000.0,
                         stepSize: 5.0
                     },
                     gridLines: {
